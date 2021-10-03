@@ -16,6 +16,11 @@ Route::group(['middleware' => 'auth'], static function (): void {
         Route::get('callback', 'LastfmController@callback')->name('lastfm.callback');
     });
 
+    Route::group(['prefix' => 'spotify'], static function (): void {
+        Route::get('connect', 'SpotifyController@connect')->name('spotify.connect');
+        Route::get('callback', 'SpotifyController@callback')->name('spotify.callback');
+    });
+
     if (ITunes::used()) {
         Route::get('itunes/song/{album}', 'ITunesController@viewSong')->name('iTunes.viewSong');
     }
